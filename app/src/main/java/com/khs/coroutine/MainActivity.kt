@@ -2,10 +2,8 @@ package com.khs.coroutine
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.khs.coroutine.async
+import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +42,22 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.Unconfined).launch {
             //호츌한 컨텍스트를 기본으로 사용한다
             //하지만 스코프 중단 후 재시작 될때 컨텍스트가 바뀌면 변경된 컨텍스트를 따라간다
+        }
+
+        //async 값 반환 예제
+        println("coroutine start")
+        CoroutineScope(Dispatchers.Default).launch {
+            val job1 = async {
+                delay(1000)
+                "job1 !!"
+            }
+
+            val job2 = async {
+                delay(3000)
+                "job2 !!"
+            }
+
+            println("${job1.await()} | ${job2.await()}")
         }
     }
 }
