@@ -2,7 +2,6 @@ package com.khs.coroutine
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.khs.coroutine.async
 import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
